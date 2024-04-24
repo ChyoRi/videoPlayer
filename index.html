@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VideoPlayer</title>
+  <link rel="stylesheet" href="./index.css">
+  <script src="https://kit.fontawesome.com/17aea16ae4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="videoplayer-frame">
+      <div class="thumb-area active">
+        <img src="./images/thumbnail.jpg" alt="썸네일 이미지">
+        <button type="button" class="play-button"></button>
+      </div>
+      <div class="play-area">
+        <video src="./video/[official] 프렌즈의 즐거운 여름 나기 3.mp4"></video>
+        <div class="bottom-bar">
+          <div class="duration-area">
+            <div class="duration"></div>
+          </div>
+          <div class="button-area">
+            <div class="edit-button-area">
+              <button type="button" class="play-pause-button">
+                <i class="fa-solid fa-play"></i>
+                <i class="fa-solid fa-pause active"></i>
+              </button>
+              <button type="button" class="refresh-button">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+              <button tpye="button" class="sound-button">
+                <i class="fa-solid fa-volume-low active"></i>
+                <i class="fa-solid fa-volume-xmark"></i>
+              </button>
+              <div class="volume-setting">
+                <div class="line"></div>
+                <div class="circle"></div>
+              </div>
+              <div class="duration-time">
+                <span class="now-time"></span>
+                <span>/</span>
+                <span class="total-time"></span>
+              </div>
+            </div>
+            <div class="screen-button-area">
+              <button type="button" class="full-screen-button">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="desc">
+      <h1>[official] 프렌즈의 즐거운 여름 나기 3</h1>
+    </div>
+  </div>
+</body>
+<script src="./index.js"></script>
+</html>

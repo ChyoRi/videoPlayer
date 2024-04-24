@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,html {
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+video {
+  width: 100%;
+  vertical-align: top;
+}
+
+.wrap .thumb-area, .wrap .play-area {
+  position: relative;
+  display: none;
+}
+
+.wrap .thumb-area.active, .wrap .play-area.active {
+  display: block;
+}
+
+.wrap .videoplayer-frame .play-button {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  background: url('./images/playbutton.png') no-repeat center;
+  background-size: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrap .bottom-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 8%;
+  padding: 0 20px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.wrap .bottom-bar .duration-area {
+  width: 100%;
+  height: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.wrap .bottom-bar .duration-area .duration {
+  height: 100%;
+  background-color: red;
+  transition: 0.3s;
+}
+
+.wrap .bottom-bar .button-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrap .bottom-bar .edit-button-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.wrap .bottom-bar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+}
+
+.wrap .bottom-bar button i {
+  font-size: 20px;
+  color: #fff;
+}
+
+.fa-solid.fa-play, .fa-solid.fa-pause, 
+.fa-solid.fa-volume-low, .fa-solid.fa-volume-xmark{
+  display: none;
+}
+
+.fa-play.active, .fa-pause.active,
+.fa-volume-low.active, .fa-volume-xmark.active{
+  display: block;
+}
+
+.duration-time span{
+  color: #fff;
+}
+
+.desc {
+  margin-top: 10px;
+}
+
+.desc h1 {
+  font-size: 25px;
+}
