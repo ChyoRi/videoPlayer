@@ -115,6 +115,15 @@ video {
   display: block;
 }
 
+.volume-setting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 5px;
+  background-color: #fff;
+}
+
 .duration-time span{
   color: #fff;
 }
