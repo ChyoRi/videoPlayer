@@ -64,6 +64,8 @@ const mute = () => {
 // Volume Setting 기능
 const volumeSetting = (e) => {
   video.volume = e.target.value / 100;
+  let gradient_value = 100 / e.target.attributes.max.value;
+  e.target.style.background = 'linear-gradient(to right, #ffffff 0%, #ffffff '+gradient_value * e.target.value +'%, rgb(236, 236, 236) ' +gradient_value *  e.target.value + '%, rgb(236, 236, 236) 100%)';
 }
 
 // Screen 기능

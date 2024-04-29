@@ -126,6 +126,7 @@ video {
 .volume-setting {
   -webkit-appearance: none;
   width: 100%;
+  height: 5px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -133,24 +134,14 @@ video {
 .volume-setting::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: #fff;
-  border: 1px solid #000;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  box-shadow: -1px 0 0 1px dodgerblue;
-}
-
-.volume-setting::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
   cursor: pointer;
-  width: 100%;
-  height: 10px;
-  border: none;
-  border-radius: 5px;
 }
 
-.volume-setting::-webkit-progress-bar {
-  background-color: #ccc;
+.volume-setting::-webkit-progress-value {
+  background-color: #000;
 }
 
 .duration-time span{
