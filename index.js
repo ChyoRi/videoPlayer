@@ -1,23 +1,31 @@
-const thumbArea = document.querySelector('.thumb-area');
-const playArea = document.querySelector('.play-area');
 const video = document.querySelector('video');
-const bottomBar = document.querySelector('.bottom-bar');
+
+// 썸네일 DOM
+const thumbArea = document.querySelector('.thumb-area');
 const bigPlayBtn = document.querySelector('.play-button');
+
+// 영상 DOM
+const playArea = document.querySelector('.play-area');
+const bottomBar = document.querySelector('.bottom-bar');
 const playPauseBtn = document.querySelector('.play-pause-button');
 const refreshBtn = document.querySelector('.refresh-button');
-const soundBtn = document.querySelector('.sound-button');
+const volumeBtn = document.querySelector('.sound-button');
 const durationBar = document.querySelector('.duration');
 const fullScreenBtn = document.querySelector('.full-screen-button');
 const nowPlayingTime = document.querySelector('.now-time');
 const totalPlayingTime = document.querySelector('.total-time');
+const volumeSettingInput = document.querySelector('.volume-setting');
+
+// 영상 관련 변수
+const VIDEO_SRC = './video/[official] 프렌즈의 즐거운 여름 나기 3.mp4';
+let timeStamp;
 
 // Thumbnail 화면 시작 버튼
 const firstPlay = () => {
   thumbArea.classList.remove('active');
   playArea.classList.add('active');
+  video.setAttribute('src', VIDEO_SRC);
   video.play();
-  totalDuration();
-  interval = setInterval(nowDuration, 1000);
 }
 
 // Play 화면 Play/Pause 기능
@@ -27,12 +35,10 @@ const playPause = () => {
     playPauseBtn.childNodes[3].classList.remove('active');
     playPauseBtn.childNodes[1].classList.add('active');
     video.pause();
-    clearInterval(interval);
   } else {
     playPauseBtn.childNodes[1].classList.remove('active');
     playPauseBtn.childNodes[3].classList.add('active');
     video.play();
-    interval = setInterval(nowDuration, 1000);
   }
 }
 
@@ -40,20 +46,24 @@ const playPause = () => {
 const refresh = () => {
   video.currentTime = 0;
   video.play();
-  interval = setInterval(nowDuration, 1000);
 }
 
 // Mute 기능
-const sound = () => {
-  if(soundBtn.childNodes[3].classList.contains('active')) {
-    soundBtn.childNodes[3].classList.remove('active');
-    soundBtn.childNodes[1].classList.add('active');
+const mute = () => {
+  if(volumeBtn.childNodes[3].classList.contains('active')) {
+    volumeBtn.childNodes[3].classList.remove('active');
+    volumeBtn.childNodes[1].classList.add('active');
     video.muted = false;
   } else {
-    soundBtn.childNodes[1].classList.remove('active');
-    soundBtn.childNodes[3].classList.add('active');
+    volumeBtn.childNodes[1].classList.remove('active');
+    volumeBtn.childNodes[3].classList.add('active');
     video.muted = true;
   }
+}
+
+// Volume Setting 기능
+const volumeSetting = (e) => {
+  video.volume = e.target.value / 100;
 }
 
 // Screen 기능
@@ -61,20 +71,20 @@ const screen = () => {
   video.requestFullscreen();
 }
 
-// 영상 지금 시간
-const nowDuration = () => {
-  let nowTime = Math.floor(video.currentTime);
-  durationBar.style.width = `${nowTime * 10}%`;
-  nowPlayingTime.innerHTML = `00 : 0${nowTime}`;
-  if(nowTime === 10) {
-    nowPlayingTime.innerHTML = `00 : ${nowTime}`;
-    clearInterval(interval);
-  }
-}
+// 영상 시간 계산
+const videoTime = () => {
+  timeStamp = Math.round(video.currentTime);
 
-// 영상 총 시간
-const totalDuration = () => {
   const totalDuration = Math.round(video.duration);
+
+  durationBar.style.width = (timeStamp / totalDuration) * 100 + '%';
+
+  if(timeStamp < 10) {
+    nowPlayingTime.innerHTML = `00 : 0${timeStamp}`;
+  } else {
+    nowPlayingTime.innerHTML = `00 : ${timeStamp}`;
+  }
+
   totalPlayingTime.innerHTML = `00 : ${totalDuration}`;
 }
 
@@ -93,11 +103,18 @@ const playAreaMouseOut = () => {
   bottomBar.style.opacity = '0';
 }
 
+video.addEventListener('loadeddata', videoTime);
+video.addEventListener('timeupdate', videoTime);
+
 bigPlayBtn.addEventListener('click', firstPlay);
 playPauseBtn.addEventListener('click', playPause);
 refreshBtn.addEventListener('click', refresh);
-soundBtn.addEventListener('click', sound);
+volumeBtn.addEventListener('click', mute);
 fullScreenBtn.addEventListener('click', screen);
+volumeSettingInput.addEventListener('input', volumeSetting);
+
+
 playArea.addEventListener('mouseover', playAreaMouseOver);
 playArea.addEventListener('mouseout', playAreaMouseOut);
+
 document.addEventListener('contextmenu', rightClickProhibition)
